@@ -51,12 +51,15 @@ class ControllerPaymentBitcoin extends Controller {
 
 		$this->data['text_enabled'] 		= $this->language->get('text_enabled');
 		$this->data['text_disabled'] 		= $this->language->get('text_disabled');
+		$this->data['text_yes'] = $this->language->get('text_yes');
+		$this->data['text_no'] = $this->language->get('text_no');
 				
         $this->data['entry_username']        = $this->language->get('entry_username');
         $this->data['entry_address']        = $this->language->get('entry_address');
         $this->data['entry_password']       = $this->language->get('entry_password');
         $this->data['entry_prefix']       = $this->language->get('entry_prefix');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
+        $this->data['entry_show_btc']         = $this->language->get('entry_show_btc');
         $this->data['entry_status']         = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] 	= $this->language->get('entry_sort_order');
 		
@@ -135,6 +138,11 @@ class ControllerPaymentBitcoin extends Controller {
 		} else {
 			$this->data[$this->payment_module_name.'_prefix'] = $this->config->get($this->payment_module_name.'_prefix');
 		} 
+        if (isset($this->request->post[$this->payment_module_name.'_show_btc'])) {
+			$this->data[$this->payment_module_name.'_show_btc'] = $this->request->post[$this->payment_module_name.'_show_btc'];
+		} else {
+			$this->data[$this->payment_module_name.'_show_btc'] = $this->config->get($this->payment_module_name.'_show_btc');
+		}
 		if (isset($this->request->post[$this->payment_module_name.'_order_status_id'])) {
 			$this->data[$this->payment_module_name.'_order_status_id'] = $this->request->post[$this->payment_module_name.'_order_status_id'];
 		} else {

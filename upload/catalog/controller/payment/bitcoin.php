@@ -17,6 +17,8 @@ class ControllerPaymentBitcoin extends Controller {
 
 		$current_default_currency = "USD";
 		
+		print "total\n";
+		//print $order['total'];
 		$this->data['bitcoin_total'] = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
 		
     	require_once('jsonRPCClient.php');
@@ -46,8 +48,10 @@ class ControllerPaymentBitcoin extends Controller {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code = 'BTC'");
 						
 			if(!$query->row) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "currency (title, code, symbol_right, decimal_place, status) VALUES ('Bitcoin', 'BTC', ' BTC', '4', '0')");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "currency (title, code, symbol_right, decimal_place, status) VALUES ('Bitcoin', 'BTC', ' BTC', '4', ".$this->config->get('bitcoin_show_btc').")");
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code = 'BTC'");
+				//$this->runUpdate();
+				//return 1;
 			}
 			
 			$format = '%Y-%m-%d %H:%M:%S';
@@ -74,7 +78,7 @@ class ControllerPaymentBitcoin extends Controller {
 	}
 	
 	public function runUpdate() {
-	//	print "update running\n";
+		print "update running\n";
 		$path = "1/BTCUSD/public/ticker";
 		$req = array();
 		

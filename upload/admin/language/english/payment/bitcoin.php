@@ -6,6 +6,8 @@ $_['heading_title']      = 'Bitcoin';
 $_['text_payment']       = 'Payment';
 $_['text_success']       = 'Success: You have modified the Bitcoin payment module!';
 $_['text_bitcoin'] = '<img src="view/image/payment/bitcoin.jpg" alt="Bitcoin" title="Bitcoin" />';
+$_['text_yes']       = 'Yes';
+$_['text_no']       = 'No';
 
 // Entry
 $_['entry_username']      = 'Bitcoin RPC Username:';
@@ -13,6 +15,7 @@ $_['entry_address']      = 'Bitcoin RPC Host Address:';
 $_['entry_password']     = 'Bitcoin RPC Password:';
 $_['entry_prefix']     = 'The prefix for the address labels ([prefix]_[order_id]):';
 $_['entry_order_status'] = 'Status of a new order:';
+$_['entry_show_btc']       = 'Show BTC as a store currency:';
 $_['entry_status']       = 'Status:';
 $_['entry_sort_order']   = 'Sort Order:';
 
