@@ -26,6 +26,7 @@ class ControllerPaymentBitcoin extends Controller {
 	protected function index() {
         $this->language->load('payment/'.$this->payment_module_name);
     	$this->data['button_bitcoin_confirm'] = $this->language->get('button_bitcoin_confirm');
+		$this->data['error_msg'] = $this->language->get('error_msg');
 				
 		$this->checkUpdate();
 	
@@ -43,11 +44,20 @@ class ControllerPaymentBitcoin extends Controller {
 		
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
 		
+		$this->data['error'] = false;
 		try {
 			$bitcoin_info = $bitcoin->getinfo();
 		} catch (Exception $e) {
-			$error = true;
+			$this->data['error'] = true;
+			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bitcoin.tpl')) {
+				$this->template = $this->config->get('config_template') . '/template/payment/bitcoin.tpl';
+			} else {
+				$this->template = 'default/template/payment/bitcoin.tpl';
+			}	
+			$this->render();
+			return;
 		}
+		$this->data['error'] = false;
 		
 		$this->data['bitcoin_send_address'] = $bitcoin->getaccountaddress($this->config->get('bitcoin_prefix').'_'.$order_id);
 		

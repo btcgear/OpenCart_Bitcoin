@@ -23,4 +23,5 @@ DEALINGS IN THE SOFTWARE.
 // Text
 $_['text_title'] = 'Bitcoin - bitcoind';
 $_['button_bitcoin_confirm'] 		= 'I sent it!';
+$_['error_msg'] = 'Error communicating with payment provider. Please contact the store for assistance.';
 ?>
