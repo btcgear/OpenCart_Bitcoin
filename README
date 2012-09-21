@@ -1,0 +1,11 @@
+OpenCart_Bitcoin
+by John Atkinson (jga) from BTC Gear
+
+This is an OpenCart payment module that communicates with a bitcoin client using JSON RPC.
+
+To install:
+upload all files.
+install extension in the admin console
+input rpc information
+
+There are other features that I am working on, but this first version is ready to try out.
