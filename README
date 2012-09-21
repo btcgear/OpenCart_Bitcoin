@@ -8,11 +8,7 @@ upload all files.
 install extension in the admin console
 input rpc information
 
-This code accurately converts USD to BTC using the up-to-the-minute MtGox average.  It is completely 
-self contained and requires no cron jobs or external hardware other than a properly configured 
-bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label 
-corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is 
-completely integrated with OpenCart.
+This code accurately converts USD to BTC using the up-to-the-minute MtGox average.  It is completely self contained and requires no cron jobs or external hardware other than a properly configured bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is completely integrated with OpenCart.
 
 There are other features that I am working on, but this first version is ready to try out.
 
