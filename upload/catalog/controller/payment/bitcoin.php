@@ -6,8 +6,7 @@ class ControllerPaymentBitcoin extends Controller {
 	protected function index() {
         $this->language->load('payment/'.$this->payment_module_name);
     	$this->data['button_bitcoin_confirm'] = $this->language->get('button_bitcoin_confirm');
-		
-		
+				
 		$this->checkUpdate();
 	
         $this->load->model('checkout/order');
@@ -32,10 +31,6 @@ class ControllerPaymentBitcoin extends Controller {
 		
 		$this->data['bitcoin_send_address'] = $bitcoin->getaccountaddress($this->config->get('bitcoin_prefix').'_'.$order_id);
 		
-
-		//not sure I need this
-		$this->data['continue'] = $this->url->link('checkout/success');
-		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bitcoin.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/bitcoin.tpl';
 		} else {
@@ -44,39 +39,6 @@ class ControllerPaymentBitcoin extends Controller {
 		
 		$this->render();
 	}
-
-    public function send() {
-	
-
-
-    }
-
-    public function callback() {
-        $json = json_decode(file_get_contents("php://input"));
-
-        if (property_exists($json, 'posData')) {
-            $salt = $this->config->get($this->payment_module_name.'_secret');
-            $posData = json_decode($json->{'posData'});
-            if($posData->{'hash'} == crypt($posData->{'id'}, $salt)) {
-                if(($json->{'status'} == 'confirmed') || ($json->{'status'} == 'complete')) {
-                    $this->load->model('checkout/order');
-                    $order_id = $posData->{'id'};
-                    $order = $this->model_checkout_order->getOrder($order_id);
-                    $this->model_checkout_order->confirm($order_id, $this->config->get('bitpay_confirmed_status_id'));
-                }
-                if($json->{'status'} == 'invalid') {
-                    $this->load->model('checkout/order');
-                    $order_id = $posData->{'id'};
-                    $order = $this->model_checkout_order->getOrder($order_id);
-                    $this->model_checkout_order->confirm($order_id, $this->config->get('bitpay_invalid_status_id'));
-                }
-            } else {
-                file_put_contents('php://stderr', "bitpay interface error: invalid order confirmation (hash was invalid)");
-            }
-        } else {
-            file_put_contents('php://stderr', "bitpay interface error: malformed order confirmation");
-        }
-    }
 	
 	public function checkUpdate() {
 		if (extension_loaded('curl')) {
