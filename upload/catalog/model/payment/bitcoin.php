@@ -2,7 +2,7 @@
 
 class ModelPaymentBitcoin extends Model {
   	public function getMethod($address) {
-		$this->load->language('payment/bitpay');
+		$this->load->language('payment/bitcoin');
 		
 		if ($this->config->get('bitcoin_status')) {
         	$status = TRUE;
