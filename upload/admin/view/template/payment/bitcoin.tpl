@@ -41,6 +41,13 @@
             <?php } ?></td>
         </tr>
         <tr>
+          <td><span class="required">*</span> <?php echo $entry_port; ?></td>
+          <td><input type="text" name="bitcoin_rpc_port" value="<?php echo $bitcoin_rpc_port; ?>" style="width:300px;" />
+            <?php if ($error_port) { ?>
+            <span class="error"><?php echo $error_port; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
           <td><span class="required">*</span> <?php echo $entry_prefix; ?></td>
           <td><input type="text" name="bitcoin_prefix" value="<?php echo $bitcoin_prefix; ?>" style="width:300px;" />
             <?php if ($error_prefix) { ?>

@@ -21,7 +21,7 @@ class ControllerPaymentBitcoin extends Controller {
 		
     	require_once('jsonRPCClient.php');
 		
-		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':8332/');
+		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
 		
 		try {
 			$bitcoin_info = $bitcoin->getinfo();

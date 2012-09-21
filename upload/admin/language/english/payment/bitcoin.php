@@ -13,6 +13,7 @@ $_['text_no']       = 'No';
 $_['entry_username']      = 'Bitcoin RPC Username:';
 $_['entry_address']      = 'Bitcoin RPC Host Address:';
 $_['entry_password']     = 'Bitcoin RPC Password:';
+$_['entry_port']     = 'Bitcoin RPC Port (default 8332):';
 $_['entry_prefix']     = 'The prefix for the address labels ([prefix]_[order_id]):';
 $_['entry_order_status'] = 'Status of a new order:';
 $_['entry_show_btc']       = 'Show BTC as a store currency:';
@@ -24,5 +25,6 @@ $_['error_permission']   = 'Warning: You do not have permission to modify bitpay
 $_['error_username']      = 'Warning: Bitcoin RPC Username is required';
 $_['error_address']      = 'Warning: Bitcoin RPC Host Address is required';
 $_['error_password']     = 'Warning: Bitcoin RPC Password is required';
+$_['error_port']     = 'Warning: Bitcoin RPC Port is required';
 $_['error_prefix']     = 'Warning: Label prefix is required';
 ?>

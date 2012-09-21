@@ -18,6 +18,9 @@ class ControllerPaymentBitcoin extends Controller {
         if (!$this->request->post['bitcoin_rpc_password']) {
             $this->error['password'] = $this->language->get('error_password');
         }
+        if (!$this->request->post['bitcoin_rpc_port']) {
+            $this->error['port'] = $this->language->get('error_port');
+        }
         if (!$this->request->post['bitcoin_prefix']) {
             $this->error['prefix'] = $this->language->get('error_prefix');
         }
@@ -57,6 +60,7 @@ class ControllerPaymentBitcoin extends Controller {
         $this->data['entry_username']        = $this->language->get('entry_username');
         $this->data['entry_address']        = $this->language->get('entry_address');
         $this->data['entry_password']       = $this->language->get('entry_password');
+        $this->data['entry_port']       = $this->language->get('entry_port');
         $this->data['entry_prefix']       = $this->language->get('entry_prefix');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_show_btc']         = $this->language->get('entry_show_btc');
@@ -80,11 +84,15 @@ class ControllerPaymentBitcoin extends Controller {
         } else {
             $this->data['error_address'] = '';
         }
-
         if (isset($this->error['password'])) {
             $this->data['error_password'] = $this->error['password'];
         } else {
             $this->data['error_password'] = '';
+        }
+        if (isset($this->error['port'])) {
+            $this->data['error_port'] = $this->error['port'];
+        } else {
+            $this->data['error_port'] = '';
         }
         if (isset($this->error['prefix'])) {
             $this->data['error_prefix'] = $this->error['prefix'];
@@ -132,6 +140,11 @@ class ControllerPaymentBitcoin extends Controller {
 			$this->data[$this->payment_module_name.'_rpc_password'] = $this->request->post[$this->payment_module_name.'_rpc_password'];
 		} else {
 			$this->data[$this->payment_module_name.'_rpc_password'] = $this->config->get($this->payment_module_name.'_rpc_password');
+		} 
+		if (isset($this->request->post[$this->payment_module_name.'_rpc_port'])) {
+			$this->data[$this->payment_module_name.'_rpc_port'] = $this->request->post[$this->payment_module_name.'_rpc_port'];
+		} else {
+			$this->data[$this->payment_module_name.'_rpc_port'] = $this->config->get($this->payment_module_name.'_rpc_port');
 		} 
 		if (isset($this->request->post[$this->payment_module_name.'_prefix'])) {
 			$this->data[$this->payment_module_name.'_prefix'] = $this->request->post[$this->payment_module_name.'_prefix'];
