@@ -21,7 +21,7 @@ DEALINGS IN THE SOFTWARE.
 -->
 
 <?php if(!$error) { ?>
-	<div style="font-size:16px">Please send <b style="font-size:18px, font-weight:bold"><?php echo $bitcoin_total; ?> BTC</b> to <b style="font-size:18px, font-weight:bold"><?php echo $bitcoin_send_address; ?></b> to complete the transaction.</div>
+	<div style="font-size:16px; text-align:center;">Please send <input type="text" style="font-size:18px; text-align: right; width:100px; " readonly="readonly" value="<?php echo $bitcoin_total; ?>"> BTC to <input type="text" style="font-size:18px; width:400px; text-align:center; " readonly="readonly" value="<?php echo $bitcoin_send_address; ?>"> to complete the transaction.</div>
 	<div class="buttons">
 		<div class="right"><a id="button-confirm" class="button"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>
 	</div>
