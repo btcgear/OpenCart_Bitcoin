@@ -12,16 +12,19 @@ Installation
 1) Upload all files maintaining OpenCart folder structure.
 2) Install the payment module in the admin console (Extensions > Payments > Bitcoin > Install).
 3) Edit the payment module settings (Extensions > Payments > Bitcoin > Edit).
-	Bitcoin RPC Username: This is the username in the "rpcuser" line of your bitcoin.conf file.
-	Bitcoin RPC Host Address: This is the IP address of the computer bitcoind is running on.
-	Bitcoin RPC Password: This is the password in the "rpcpassword" line of your bitcoin.conf file.
-	Bitcoin RPC Port: This is the port number in the "rpcport" line of your bitcoin.conf file.  The default port is 8332.
-	The prefix for the address labels: The addresses will be assigned to accounts named with the format [prefix]_[order_id].
-	Show BTC as a store currency: If you select yes, your customers will be able to view prices in BTC.
-	Status of a new order: Choose a status for an order that has received payment with 0 confirmations.
-	Status: Enable the Bitcoin payment module here.
-	Sort Order: Where you want this module to show up in relation to the other payment modules on the checkout page.
 4) Run at least one test order through checkout up until payment (no payment required).  The first order initializes the Bitcoin currency and will return 0 BTC for the order total.
+
+Explanation of Settings
+-----------------------
+Bitcoin RPC Username: This is the username in the "rpcuser" line of your bitcoin.conf file.
+Bitcoin RPC Host Address: This is the IP address of the computer bitcoind is running on.
+Bitcoin RPC Password: This is the password in the "rpcpassword" line of your bitcoin.conf file.
+Bitcoin RPC Port: This is the port number in the "rpcport" line of your bitcoin.conf file.  The default port is 8332.
+The prefix for the address labels: The addresses will be assigned to accounts named with the format [prefix]_[order_id].
+Show BTC as a store currency: If you select yes, your customers will be able to view prices in BTC.
+Status of a new order: Choose a status for an order that has received payment with 0 confirmations.
+Status: Enable the Bitcoin payment module here.
+Sort Order: Where you want this module to show up in relation to the other payment modules on the checkout page.
 
 
 New in version 1.1.0
