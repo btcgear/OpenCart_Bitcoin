@@ -23,12 +23,31 @@ DEALINGS IN THE SOFTWARE.
 <?php if(!$error) { ?>
 	<div style="font-size:16px">Please send <b style="font-size:18px, font-weight:bold"><?php echo $bitcoin_total; ?> BTC</b> to <b style="font-size:18px, font-weight:bold"><?php echo $bitcoin_send_address; ?></b> to complete the transaction.</div>
 	<div class="buttons">
-		<div class="right"><a id="button-confirm" class="button" href="index.php?route=checkout/success"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>
+		<div class="right"><a id="button-confirm" class="button"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>
 	</div>
 <?php } else { ?>
 <div class="warning">
 <?php echo $error_msg; ?>
 </div>
 <?php } ?>
-	
+<script type="text/javascript"><!--
+$('#button-confirm').bind('click', function() {
+	$.ajax({ 
+		type: 'GET',
+		url: 'index.php?route=payment/bitcoin/confirm_sent',
+        timeout: 5000,
+        error: function() {
+            alert('That didn\'t quite work. Please try again. If you receive this message multiple times, please contact us so we can help finalize your order.');
+        },
+		success: function(received) {
+			if(!received) {
+				alert("We have not yet received your full payment. If you already sent it, try again in a few seconds. If you receive this message multiple times, please contact us so we can help finalize your order.");
+			}
+			else {
+				location.href = 'index.php?route=checkout/success';
+			}
+		}		
+	});
+});
+//--></script> 
 

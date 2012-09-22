@@ -33,14 +33,12 @@ class ControllerPaymentBitcoin extends Controller {
         $this->load->model('checkout/order');
 		$order_id = $this->session->data['order_id'];
 		$order = $this->model_checkout_order->getOrder($order_id);
-        $this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
-		//order created
 
 		$current_default_currency = "USD";
 		
 		$this->data['bitcoin_total'] = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
 		
-    	require_once('jsonRPCClient.php');
+		require_once('jsonRPCClient.php');
 		
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
 		
@@ -68,6 +66,33 @@ class ControllerPaymentBitcoin extends Controller {
 		}	
 		
 		$this->render();
+	}
+	
+	
+	public function confirm_sent() {
+        $this->load->model('checkout/order');
+		$order_id = $this->session->data['order_id'];
+        $order = $this->model_checkout_order->getOrder($order_id);
+		$current_default_currency = "USD";		
+		$bitcoin_total = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
+		require_once('jsonRPCClient.php');
+		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
+	
+		try {
+			$bitcoin_info = $bitcoin->getinfo();
+		} catch (Exception $e) {
+			$this->data['error'] = true;
+		}
+
+		$received_amount = $bitcoin->getreceivedbyaccount($this->config->get('bitcoin_prefix').'_'.$order_id,0);
+		if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
+			$order = $this->model_checkout_order->getOrder($order_id);
+			$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
+			echo true;
+		}
+		else {
+			echo false;
+		}
 	}
 	
 	public function checkUpdate() {

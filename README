@@ -1,6 +1,8 @@
 OpenCart_Bitcoin
 by John Atkinson (jga) from BTC Gear
 
+Bounties/Donations can be paid here: 12ctRXVVPAXQ6CQyEXkBhvi33K7kP4CMB5
+
 This is an OpenCart payment module that communicates with a bitcoin client using JSON RPC.
 
 To install:
@@ -12,7 +14,12 @@ This code accurately converts USD to BTC using the up-to-the-minute MtGox averag
 
 There are other features that I am working on, but this first version is ready to try out.
 
-Bounties/Donations can be paid here: 12ctRXVVPAXQ6CQyEXkBhvi33K7kP4CMB5
+New in version 1.1.0
+------------
+Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
+
+
+
 
 
 Copyright (c) 2012 John Atkinson (jga)
