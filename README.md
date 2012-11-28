@@ -1,11 +1,17 @@
 # OpenCart_Bitcoin
 ### by John Atkinson (jga) from [BTC Gear](http://btcgear.com/)
 
-Bounties/Donations can be paid here: **12ctRXVVPAXQ6CQyEXkBhvi33K7kP4CMB5**
+Donations can be paid here: **12ctRXVVPAXQ6CQyEXkBhvi33K7kP4CMB5**
+
+Initial bounty paid by cablepair.
 
 This is an OpenCart payment module that communicates with a bitcoin client using JSON RPC.
 
 This code accurately converts USD to BTC using the up-to-the-minute MtGox average.  It is completely self contained and requires no cron jobs or external hardware other than a properly configured bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is completely integrated with OpenCart.
+
+This extension has been tested with OpenCart versions between 1.5.2.x and 1.5.4.
+
+Any questions or comments can be sent to support@btcgear.com.
 
 # Installation
 
