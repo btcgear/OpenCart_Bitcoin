@@ -37,6 +37,15 @@ Any questions or comments can be sent to support@btcgear.com.
 
 Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
 
+### New in version 1.1.1
+
+Adds a cleaner user interface during checkout
+
+### New in version 1.2.0
+
+Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
+
+
 * * *
 
 Copyright (c) 2012 John Atkinson (jga)
