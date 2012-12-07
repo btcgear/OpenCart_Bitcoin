@@ -23,5 +23,8 @@ DEALINGS IN THE SOFTWARE.
 // Text
 $_['text_title'] = 'Bitcoin - bitcoind';
 $_['button_bitcoin_confirm'] 		= 'I sent it!';
+$_['button_bitcoin_pay'] 		= 'Pay with Bitcoin';
 $_['error_msg'] = 'Error communicating with payment provider. Please contact the store for assistance.';
+$_['error_confirm'] = 'That didn\\\'t quite work. Please try again. If you receive this message multiple times, please contact us so we can help finalize your order.';
+$_['error_incomplete_pay'] = 'We have not yet received your full payment. If you already sent it, try again in a few seconds. If you receive this message multiple times, please contact us so we can help finalize your order.';
 ?>

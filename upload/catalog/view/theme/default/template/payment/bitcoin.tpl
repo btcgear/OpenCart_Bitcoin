@@ -21,33 +21,51 @@ DEALINGS IN THE SOFTWARE.
 -->
 
 <?php if(!$error) { ?>
-	<div style="font-size:16px; text-align:center;">Please send <input type="text" style="font-size:18px; text-align: right; width:100px; " readonly="readonly" value="<?php echo $bitcoin_total; ?>"> BTC to <input type="text" style="font-size:18px; width:400px; text-align:center; " readonly="readonly" value="<?php echo $bitcoin_send_address; ?>"> to complete the transaction.</div>
-	<div class="buttons">
-		<div class="right"><a id="button-confirm" class="button"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>
-	</div>
+<div class="buttons">
+	<div class="right"><a id="button-pay" class="button"><span><?php echo $button_bitcoin_pay; ?></span></a></div>
+</div>
 <?php } else { ?>
 <div class="warning">
 <?php echo $error_msg; ?>
 </div>
 <?php } ?>
 <script type="text/javascript"><!--
-$('#button-confirm').bind('click', function() {
-	$.ajax({ 
-		type: 'GET',
-		url: 'index.php?route=payment/bitcoin/confirm_sent',
-        timeout: 5000,
-        error: function() {
-            alert('That didn\'t quite work. Please try again. If you receive this message multiple times, please contact us so we can help finalize your order.');
-        },
-		success: function(received) {
-			if(!received) {
-				alert("We have not yet received your full payment. If you already sent it, try again in a few seconds. If you receive this message multiple times, please contact us so we can help finalize your order.");
-			}
-			else {
-				location.href = 'index.php?route=checkout/success';
-			}
-		}		
+
+
+$('#button-pay').on('click', function() {
+	html  = '<div style="font-size:16px; padding:6px; text-align:center;">Please send <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> BTC to </div><div style="font-size:16px; padding:6px; text-align:center;"><span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_send_address; ?></span></div><div style="font-size:16px; padding:6px; text-align:center;"> to complete the transaction.</div>';
+	html += '<div class="buttons">';
+	html += '	<div class="right"><a id="button-confirm" class="button"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>';
+	html += '</div>';
+	$.colorbox({
+		overlayClose: true,
+		opacity: 0.5,
+		width: '500px',
+		height: '225px',
+		href: false,
+		html: html,
+		onComplete: function() {
+			$('#button-confirm').on('click', function() {
+				$.ajax({ 
+					type: 'GET',
+					url: 'index.php?route=payment/bitcoin/confirm_sent',
+					timeout: 5000,
+					error: function() {
+						alert('<?php echo $error_confirm; ?>');
+					},
+					success: function(received) {
+						if(!received) {
+							alert('<?php echo $error_incomplete_pay; ?>');
+						}
+						else {
+							location.href = 'index.php?route=checkout/success';
+						}
+					}		
+				});
+			});
+		}
 	});
 });
 //--></script> 
+
 
