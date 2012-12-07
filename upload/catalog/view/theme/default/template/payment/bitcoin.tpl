@@ -21,6 +21,7 @@ DEALINGS IN THE SOFTWARE.
 -->
 
 <?php if(!$error) { ?>
+
 <div class="buttons">
 	<div class="right"><a id="button-pay" class="button"><span><?php echo $button_bitcoin_pay; ?></span></a></div>
 </div>
@@ -33,15 +34,22 @@ DEALINGS IN THE SOFTWARE.
 
 
 $('#button-pay').on('click', function() {
-	html  = '<div style="font-size:16px; padding:6px; text-align:center;">Please send <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> BTC to </div><div style="font-size:16px; padding:6px; text-align:center;"><span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_send_address; ?></span></div><div style="font-size:16px; padding:6px; text-align:center;"> to complete the transaction.</div>';
-	html += '<div class="buttons">';
+	html  = '<div id="payment-wrapper" style="position:relative;">';
+	html += '	<div id="payment-left" style="float:left; padding-top:25px;">';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;">Please send <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> BTC to </div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_send_address; ?></span></div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"> to complete the transaction.</div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><a style="font-size: 16px;" href="bitcoin:<?php echo $bitcoin_send_address; ?>?amount=<?php echo $bitcoin_total; ?>">Click to pay</a> (URI-compatible wallets only)</div>';
+	html += '	</div>';
+	html += '<div id="payment-right" style="float: right;"><img src="http://chart.apis.google.com/chart?cht=qr&chl=bitcoin:<?php echo $bitcoin_send_address; ?>?amount=<?php echo $bitcoin_total; ?>&chs=160x160"></div></div>';
+	html += '<div class="buttons" style="clear: both;">';
 	html += '	<div class="right"><a id="button-confirm" class="button"><span><?php echo $button_bitcoin_confirm; ?></span></a></div>';
 	html += '</div>';
 	$.colorbox({
 		overlayClose: true,
 		opacity: 0.5,
-		width: '500px',
-		height: '225px',
+		width: '600px',
+		height: '285px',
 		href: false,
 		html: html,
 		onComplete: function() {

@@ -45,6 +45,9 @@ Adds a cleaner user interface during checkout
 
 Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
 
+### New in version 1.3.0
+
+Added QR code and URI Click to pay to checkout page.
 
 * * *
 
