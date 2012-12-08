@@ -35,19 +35,24 @@ Any questions or comments can be sent to support@btcgear.com.
 
 ### New in version 1.1.0
 
-Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
+* Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
 
 ### New in version 1.1.1
 
-Adds a cleaner user interface during checkout
+* Adds a cleaner user interface during checkout
 
 ### New in version 1.2.0
 
-Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
+* Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
 
 ### New in version 1.3.0
 
-Added QR code and URI Click to pay to checkout page.
+* Added QR code and URI Click to pay to checkout page.
+
+### New in version 1.3.1
+
+* Checkout page automatically redirects to success page upon payment.
+* All checkout language moved to language file.
 
 * * *
 
