@@ -25,8 +25,14 @@ class ControllerPaymentBitcoin extends Controller {
     private $payment_module_name  = 'bitcoin';
 	protected function index() {
         $this->language->load('payment/'.$this->payment_module_name);
-    	$this->data['button_bitcoin_confirm'] = $this->language->get('button_bitcoin_confirm');
     	$this->data['button_bitcoin_pay'] = $this->language->get('button_bitcoin_pay');
+    	$this->data['text_please_send'] = $this->language->get('text_please_send');
+    	$this->data['text_btc_to'] = $this->language->get('text_btc_to');
+    	$this->data['text_to_complete'] = $this->language->get('text_to_complete');
+    	$this->data['text_click_pay'] = $this->language->get('text_click_pay');
+    	$this->data['text_uri_compatible'] = $this->language->get('text_uri_compatible');
+    	$this->data['text_click_here'] = $this->language->get('text_click_here');
+    	$this->data['text_if_not_redirect'] = $this->language->get('text_if_not_redirect');
 		$this->data['error_msg'] = $this->language->get('error_msg');
 		$this->data['error_confirm'] = $this->language->get('error_confirm');
 		$this->data['error_incomplete_pay'] = $this->language->get('error_incomplete_pay');

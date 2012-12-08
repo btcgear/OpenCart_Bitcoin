@@ -34,14 +34,14 @@ DEALINGS IN THE SOFTWARE.
 $('#button-pay').on('click', function() {
 	html  = '<div id="payment-wrapper" style="position:relative;">';
 	html += '	<div id="payment-left" style="float:left; margin-top:20px;">';
-	html += '		<div style="font-size:16px; padding:6px; text-align:center;">Please send <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> BTC to </div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><?php echo $text_please_send ?> <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> <?php echo $text_btc_to ?> </div>';
 	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_send_address; ?></span></div>';
-	html += '		<div style="font-size:16px; padding:6px; text-align:center;"> to complete the transaction.</div>';
-	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><a style="font-size: 16px;" href="bitcoin:<?php echo $bitcoin_send_address; ?>?amount=<?php echo $bitcoin_total; ?>">Click to pay</a> (URI-compatible wallets only)</div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"> <?php echo $text_to_complete ?></div>';
+	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><a style="font-size: 16px;" href="bitcoin:<?php echo $bitcoin_send_address; ?>?amount=<?php echo $bitcoin_total; ?>"><?php echo $text_click_pay ?></a> <?php echo $text_uri_compatible ?></div>';
 	html += '	</div>';
 	html += '<div id="payment-right" style="float: right;"><img src="http://chart.apis.google.com/chart?cht=qr&chl=bitcoin:<?php echo $bitcoin_send_address; ?>?amount=<?php echo $bitcoin_total; ?>&chs=160x160"></div></div>';
 	html += '<div class="buttons" style="clear: both; margin-bottom:6px; margin-top:12px;">';
-	html += '	<div class="center"><a id="button-confirm"><span>Click here</span></a> if you are not redirected automatically a few seconds after payment.</div>';
+	html += '	<div class="center"><a id="button-confirm"><span><?php echo $text_click_here ?></span></a> <?php echo $text_if_not_redirect ?></div>';
 	html += '</div>';
 	$.colorbox({
 		overlayClose: true,
