@@ -31,6 +31,18 @@ DEALINGS IN THE SOFTWARE.
 </div>
 <?php } ?>
 <script type="text/javascript"><!--
+if (typeof colorbox == 'undefined') {
+	var e = document.createElement('script');
+	e.src = 'catalog/view/javascript/jquery/colorbox/jquery.colorbox.js';
+	e.type = "text/javascript";
+	document.getElementsByTagName("head")[0].appendChild(e);
+	e = document.createElement('link');
+	e.rel = "stylesheet";
+	e.type = "text/css";
+	e.href = "catalog/view/javascript/jquery/colorbox/colorbox.css";
+	e.media = "screen"
+	document.getElementsByTagName("head")[0].appendChild(e);
+}
 $('#button-pay').on('click', function() {
 	html  = '<div id="payment-wrapper" style="position:relative;">';
 	html += '	<div id="payment-left" style="float:left; margin-top:20px;">';
@@ -67,7 +79,7 @@ $('#button-pay').on('click', function() {
 						else {
 							location.href = 'index.php?route=checkout/success';
 						}
-					}		
+					}	
 				});
 			});
 			function bitcoin_check () {			
