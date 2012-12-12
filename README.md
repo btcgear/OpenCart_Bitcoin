@@ -56,6 +56,10 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 * Checkout page automatically redirects to success page upon payment.
 * All checkout language moved to language file.
 
+### New in version 1.3.2
+
+* Improved compatibility with third-party themes.
+
 * * *
 
 Copyright (c) 2012 John Atkinson (jga)
