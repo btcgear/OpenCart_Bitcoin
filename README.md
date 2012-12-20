@@ -34,6 +34,9 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 * *Status*: Enable the Bitcoin payment module here.
 * *Sort Order*: Where you want this module to show up in relation to the other payment modules on the checkout page.
 
+### New in version 1.3.3
+
+* Bugfixes, removed "bitcoind" from name of payment method.
 
 ### New in version 1.3.2
 
@@ -55,7 +58,6 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 ### New in version 1.1.1
 
 * Adds a cleaner user interface during checkout
-
 
 ### New in version 1.1.0
 
