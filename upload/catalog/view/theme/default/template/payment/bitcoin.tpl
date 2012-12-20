@@ -44,6 +44,7 @@ if (typeof colorbox == 'undefined') {
 	document.getElementsByTagName("head")[0].appendChild(e);
 }
 $('#button-pay').on('click', function() {
+	var checker = 0;
 	html  = '<div id="payment-wrapper" style="position:relative;">';
 	html += '	<div id="payment-left" style="float:left; margin-top:20px;">';
 	html += '		<div style="font-size:16px; padding:6px; text-align:center;"><?php echo $text_please_send ?> <span style="font-size:18px; border-style:solid; border-width: 1px; border-radius:3px; padding-top:3px; padding-right:6px; padding-left:6px; padding-bottom:3px;"><?php echo $bitcoin_total; ?></span> <?php echo $text_btc_to ?> </div>';
@@ -63,7 +64,7 @@ $('#button-pay').on('click', function() {
 		href: false,
 		html: html,
 		onComplete: function() {
-			setInterval (bitcoin_check, 1000);
+			checker = setInterval(bitcoin_check, 5000);
 			$('#button-confirm').on('click', function() {
 				$.ajax({ 
 					type: 'GET',
@@ -94,6 +95,10 @@ $('#button-pay').on('click', function() {
 					}		
 				});
 			}
+		},
+		onCleanup: function() {
+			clearInterval(checker);
+			checker = 0;
 		}
 	});
 });
