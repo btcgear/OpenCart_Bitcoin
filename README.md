@@ -35,30 +35,32 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 * *Sort Order*: Where you want this module to show up in relation to the other payment modules on the checkout page.
 
 
-### New in version 1.1.0
+### New in version 1.3.2
 
-* Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
-
-### New in version 1.1.1
-
-* Adds a cleaner user interface during checkout
-
-### New in version 1.2.0
-
-* Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
-
-### New in version 1.3.0
-
-* Added QR code and URI Click to pay to checkout page.
+* Improved compatibility with third-party themes.
 
 ### New in version 1.3.1
 
 * Checkout page automatically redirects to success page upon payment.
 * All checkout language moved to language file.
 
-### New in version 1.3.2
+### New in version 1.3.0
 
-* Improved compatibility with third-party themes.
+* Added QR code and URI Click to pay to checkout page.
+
+### New in version 1.2.0
+
+* Checkout UI revamped. Payment information presented in colorbox. Payment amount and address are easier to select.
+
+### New in version 1.1.1
+
+* Adds a cleaner user interface during checkout
+
+
+### New in version 1.1.0
+
+* Orders are only confirmed (and created in the admin console) once initial payment has been received (0 confirmations).
+
 
 * * *
 
