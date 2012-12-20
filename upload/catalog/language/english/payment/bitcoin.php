@@ -21,7 +21,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 // Text
-$_['text_title'] = 'Bitcoin - bitcoind';
+$_['text_title'] = 'Bitcoin';
 $_['button_bitcoin_pay'] 		= 'Pay with Bitcoin';
 $_['text_please_send']	= 'Please send';
 $_['text_btc_to']	= 'BTC to';
