@@ -40,7 +40,7 @@ $_['entry_status']       = 'Status:';
 $_['entry_sort_order']   = 'Sort Order:';
 
 // Error
-$_['error_permission']   = 'Warning: You do not have permission to modify bitpay payment module.';
+$_['error_permission']   = 'Warning: You do not have permission to modify the Bitcoin payment module.';
 $_['error_username']      = 'Warning: Bitcoin RPC Username is required';
 $_['error_address']      = 'Warning: Bitcoin RPC Host Address is required';
 $_['error_password']     = 'Warning: Bitcoin RPC Password is required';
