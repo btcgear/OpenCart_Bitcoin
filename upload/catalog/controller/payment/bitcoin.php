@@ -142,7 +142,7 @@ class ControllerPaymentBitcoin extends Controller {
 	}
 	
 	public function runUpdate() {
-		$path = "1/BTCUSD/public/ticker";
+		$path = "1/BTCUSD/ticker";
 		$req = array();
 		
 		// API settings
@@ -169,10 +169,7 @@ class ControllerPaymentBitcoin extends Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
 		}
-		curl_setopt($ch, CURLOPT_URL, 'https://mtgox.com/api/'.$path);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_URL, 'http://data.mtgox.com/api/'.$path);
 	 
 		// run the query
 		$res = curl_exec($ch);
