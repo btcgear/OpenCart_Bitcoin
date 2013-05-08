@@ -43,7 +43,7 @@ class ControllerPaymentBitcoin extends Controller {
 		$order_id = $this->session->data['order_id'];
 		$order = $this->model_checkout_order->getOrder($order_id);
 
-		$current_default_currency = "USD";
+		$current_default_currency = $this->config->get('config_currency');
 		
 		$this->data['bitcoin_total'] = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
 		
@@ -82,7 +82,7 @@ class ControllerPaymentBitcoin extends Controller {
         $this->load->model('checkout/order');
 		$order_id = $this->session->data['order_id'];
         $order = $this->model_checkout_order->getOrder($order_id);
-		$current_default_currency = "USD";		
+		$current_default_currency = $this->config->get('config_currency');		
 		$bitcoin_total = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
 		require_once('jsonRPCClient.php');
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
@@ -142,7 +142,8 @@ class ControllerPaymentBitcoin extends Controller {
 	}
 	
 	public function runUpdate() {
-		$path = "1/BTCUSD/ticker";
+		$default_currency_code = $this->config->get('config_currency');
+		$path = "1/BTC". $default_currency_code . "/ticker";
 		$req = array();
 		
 		// API settings
