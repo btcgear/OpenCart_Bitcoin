@@ -7,7 +7,7 @@ Initial bounty paid by cablepair.
 
 This is an OpenCart payment module that communicates with a bitcoin client using JSON RPC.
 
-This code accurately converts USD to BTC using the up-to-the-minute MtGox average.  It is completely self contained and requires no cron jobs or external hardware other than a properly configured bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is completely integrated with OpenCart.
+This code accurately converts any Mt.Gox-compatible currency to BTC using the up-to-the-minute Mt.Gox values for average trade vaule and last trade value.  It is completely self contained and requires no cron jobs or external hardware other than a properly configured bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is completely integrated with OpenCart.
 
 This extension has been tested with OpenCart versions between 1.5.2.1 and 1.5.4.1.
 
@@ -33,6 +33,13 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 * *Status of a new order*: Choose a status for an order that has received payment with 0 confirmations.
 * *Status*: Enable the Bitcoin payment module here.
 * *Sort Order*: Where you want this module to show up in relation to the other payment modules on the checkout page.
+
+### New in version 1.3.4
+
+* Fixed bug caused by Mt.Gox API changes
+* Now works with any Mt.Gox-compatible currency as the default currency.
+* Exchange rate calculated using both last value and average value.
+
 
 ### New in version 1.3.3
 
@@ -66,7 +73,7 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 
 * * *
 
-Copyright (c) 2012 John Atkinson (jga)
+Copyright (c) 2013 John Atkinson (jga)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
