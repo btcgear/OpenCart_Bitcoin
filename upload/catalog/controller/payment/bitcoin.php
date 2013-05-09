@@ -170,7 +170,7 @@ class ControllerPaymentBitcoin extends Controller {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
 		}
-		curl_setopt($ch, CURLOPT_URL, 'http://data.mtgox.com/api/'.$path);
+		curl_setopt($ch, CURLOPT_URL, 'https://data.mtgox.com/api/'.$path);
 	 
 		// run the query
 		$res = curl_exec($ch);
