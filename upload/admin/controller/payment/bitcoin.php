@@ -43,6 +43,9 @@ class ControllerPaymentBitcoin extends Controller {
         if (!$this->request->post['bitcoin_prefix']) {
             $this->error['prefix'] = $this->language->get('error_prefix');
         }
+        if (!$this->request->post['bitcoin_countdown_timer']) {
+            $this->error['countdown_timer'] = $this->language->get('error_countdown_timer');
+        }
 		
 		if (!$this->error) {
 			return TRUE;
@@ -83,6 +86,7 @@ class ControllerPaymentBitcoin extends Controller {
         $this->data['entry_prefix']       = $this->language->get('entry_prefix');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_show_btc']         = $this->language->get('entry_show_btc');
+        $this->data['entry_countdown_timer']         = $this->language->get('entry_countdown_timer');
         $this->data['entry_status']         = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] 	= $this->language->get('entry_sort_order');
 		
@@ -117,6 +121,11 @@ class ControllerPaymentBitcoin extends Controller {
             $this->data['error_prefix'] = $this->error['prefix'];
         } else {
             $this->data['error_prefix'] = '';
+        }
+        if (isset($this->error['countdown_timer'])) {
+            $this->data['error_countdown_timer'] = $this->error['countdown_timer'];
+        } else {
+            $this->data['error_countdown_timer'] = '';
         }
 
         $this->data['breadcrumbs'] = array();
@@ -174,6 +183,11 @@ class ControllerPaymentBitcoin extends Controller {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->request->post[$this->payment_module_name.'_show_btc'];
 		} else {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->config->get($this->payment_module_name.'_show_btc');
+		}
+        if (isset($this->request->post[$this->payment_module_name.'_countdown_timer'])) {
+			$this->data[$this->payment_module_name.'_countdown_timer'] = $this->request->post[$this->payment_module_name.'_countdown_timer'];
+		} else {
+			$this->data[$this->payment_module_name.'_countdown_timer'] = $this->config->get($this->payment_module_name.'_countdown_timer');
 		}
 		if (isset($this->request->post[$this->payment_module_name.'_order_status_id'])) {
 			$this->data[$this->payment_module_name.'_order_status_id'] = $this->request->post[$this->payment_module_name.'_order_status_id'];

@@ -86,6 +86,13 @@ DEALINGS IN THE SOFTWARE.
               <?php } ?>
             </select></td>
         </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_countdown_timer; ?></td>
+          <td><input type="text" name="bitcoin_countdown_timer" value="<?php echo $bitcoin_countdown_timer; ?>" style="width:300px;" />
+            <?php if ($error_countdown_timer) { ?>
+            <span class="error"><?php echo $error_countdown_timer; ?></span>
+            <?php } ?></td>
+        </tr>
           <tr>
             <td><?php echo $entry_order_status; ?></td>
             <td><select name="bitcoin_order_status_id">

@@ -32,10 +32,14 @@ class ControllerPaymentBitcoin extends Controller {
     	$this->data['text_click_pay'] = $this->language->get('text_click_pay');
     	$this->data['text_uri_compatible'] = $this->language->get('text_uri_compatible');
     	$this->data['text_click_here'] = $this->language->get('text_click_here');
+    	$this->data['text_pre_timer'] = $this->language->get('text_pre_timer');
+    	$this->data['text_post_timer'] = $this->language->get('text_post_timer');
+		$this->data['text_countdown_expired'] = $this->language->get('text_countdown_expired');
     	$this->data['text_if_not_redirect'] = $this->language->get('text_if_not_redirect');
 		$this->data['error_msg'] = $this->language->get('error_msg');
 		$this->data['error_confirm'] = $this->language->get('error_confirm');
 		$this->data['error_incomplete_pay'] = $this->language->get('error_incomplete_pay');
+		$this->data['bitcoin_countdown_timer'] = $this->config->get('bitcoin_countdown_timer');
 				
 		$this->checkUpdate();
 	
