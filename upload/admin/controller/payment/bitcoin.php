@@ -57,7 +57,7 @@ class ControllerPaymentBitcoin extends Controller {
 	public function index() {
 		$this->load->language('payment/'.$this->payment_module_name);
 		$this->load->model('setting/setting');
-		
+				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
 			$this->model_setting_setting->editSetting($this->payment_module_name, $this->request->post);
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -211,5 +211,12 @@ class ControllerPaymentBitcoin extends Controller {
 		);
 		
 		$this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
+	}
+	
+	public function update_db() {
+
+		$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_total DOUBLE AFTER currency_value;");
+		$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_address VARCHAR(34) AFTER bitcoin_total;");
+
 	}
 }
