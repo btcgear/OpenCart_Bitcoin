@@ -119,6 +119,9 @@ $('#button-pay').on('click', function() {
 						type: 'GET',
 						url: 'index.php?route=payment/bitcoin/confirm_sent',
 						timeout: 5000,
+						error: function() {
+							document.getElementById("cboxLoadedContent").innerHTML = document.getElementById("cboxLoadedContent").innerHTML + '<div class="warning"><?php echo $error_confirm; ?></div>';
+						},
 						success: function(received) {
 							if(received) {
 								location.href = 'index.php?route=checkout/success';

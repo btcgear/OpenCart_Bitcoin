@@ -51,6 +51,9 @@ class ControllerPaymentBitcoin extends Controller {
 		
 		$this->data['bitcoin_total'] = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
 		
+		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET bitcoin_total = '" . $this->data['bitcoin_total'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
+
+		
 		require_once('jsonRPCClient.php');
 		
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
@@ -71,6 +74,7 @@ class ControllerPaymentBitcoin extends Controller {
 		$this->data['error'] = false;
 		
 		$this->data['bitcoin_send_address'] = $bitcoin->getaccountaddress($this->config->get('bitcoin_prefix').'_'.$order_id);
+		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET bitcoin_address = '" . $this->data['bitcoin_send_address'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
 		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bitcoin.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/payment/bitcoin.tpl';
@@ -87,7 +91,7 @@ class ControllerPaymentBitcoin extends Controller {
 		$order_id = $this->session->data['order_id'];
         $order = $this->model_checkout_order->getOrder($order_id);
 		$current_default_currency = $this->config->get('config_currency');		
-		$bitcoin_total = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
+		$bitcoin_total = $order['bitcoin_total'];
 		require_once('jsonRPCClient.php');
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
 	
@@ -99,17 +103,19 @@ class ControllerPaymentBitcoin extends Controller {
 
 		try {
 			$received_amount = $bitcoin->getreceivedbyaccount($this->config->get('bitcoin_prefix').'_'.$order_id,0);
+			if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
+				$order = $this->model_checkout_order->getOrder($order_id);
+				$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
+				echo true;
+			}
+			else {
+				echo false;
+			}
 		} catch (Exception $e) {
+			$this->data['error'] = true;
 			echo false;
 		}
-		if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
-			$order = $this->model_checkout_order->getOrder($order_id);
-			$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
-			echo true;
-		}
-		else {
-			echo false;
-		}
+
 	}
 	
 	public function checkUpdate() {
