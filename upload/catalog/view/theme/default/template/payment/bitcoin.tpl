@@ -43,6 +43,9 @@ if (typeof colorbox == 'undefined') {
 	document.getElementsByTagName("head")[0].appendChild(e);
 }
 var countdown;
+clearInterval(countdown);
+countdown = 0;
+
 var timeleft = <?php echo $bitcoin_countdown_timer; ?>;
 var checker = 0;
 var expired_countdown_content = '<div style="font-size:16px; padding:6px; text-align:center;"><?php echo $text_countdown_expired ?></div>';
