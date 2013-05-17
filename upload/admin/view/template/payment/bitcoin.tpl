@@ -23,6 +23,9 @@ Copyright (c) 2013 John Atkinson (jga)
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
       <table class="form">
         <tr>
+          <td colspan="2"><a href="index.php?route=payment/bitcoin/update_db&token=<?php echo $this->session->data['token']; ?>">Click here the first time you configure this extension to prepare your database.</a></td>
+        </tr>
+        <tr>
           <td><span class="required">*</span> <?php echo $entry_username; ?></td>
           <td><input type="text" name="bitcoin_rpc_username" value="<?php echo $bitcoin_rpc_username; ?>" style="width:300px;" />
             <?php if ($error_username) { ?>

@@ -83,11 +83,12 @@ $('#button-pay').on('click', function() {
 					type: 'GET',
 					url: 'index.php?route=payment/bitcoin/confirm_sent',
 					timeout: 5000,
+					dataType: 'text',
 					error: function() {
 						document.getElementById("cboxLoadedContent").innerHTML = document.getElementById("cboxLoadedContent").innerHTML + '<div class="warning"><?php echo $error_confirm; ?></div>';
 					},
 					success: function(received) {
-						if(!received) {
+						if(received != "1") {
 							document.getElementById("cboxLoadedContent").innerHTML = document.getElementById("cboxLoadedContent").innerHTML + '<div class="warning"><?php echo $error_incomplete_pay; ?></div>';
 						}
 						else {
@@ -102,11 +103,12 @@ $('#button-pay').on('click', function() {
 						type: 'GET',
 						url: 'index.php?route=payment/bitcoin/confirm_sent',
 						timeout: 5000,
+						dataType: 'text',
 						error: function() {
 							document.getElementById("cboxLoadedContent").innerHTML = document.getElementById("cboxLoadedContent").innerHTML + '<div class="warning"><?php echo $error_confirm; ?></div>';
 						},
 						success: function(received) {
-							if(received) {
+							if(received == "1") {
 								location.href = 'index.php?route=checkout/success';
 							}
 						}		

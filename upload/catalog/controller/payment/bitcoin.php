@@ -89,14 +89,14 @@ class ControllerPaymentBitcoin extends Controller {
 			if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
 				$order = $this->model_checkout_order->getOrder($order_id);
 				$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
-				echo true;
+				echo "1";
 			}
 			else {
-				echo false;
+				echo "0";
 			}
 		} catch (Exception $e) {
 			$this->data['error'] = true;
-			echo false;
+			echo "0";
 		}
 
 	}
