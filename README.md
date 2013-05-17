@@ -9,18 +9,24 @@ This is an OpenCart payment module that communicates with a bitcoin client using
 
 This code accurately converts any Mt.Gox-compatible currency to BTC using the up-to-the-minute Mt.Gox values for average trade vaule and last trade value.  It is completely self contained and requires no cron jobs or external hardware other than a properly configured bitcoind server.  Every order creates a new bitcoin address for payment and gives it a label corresponding to the order_id of the order.  It installs like any other OpenCart plugin and it is completely integrated with OpenCart.
 
-This extension has been tested with OpenCart versions between 1.5.2.1 and 1.5.4.1.
+This extension has been tested with OpenCart versions between 1.5.2.1 and 1.5.5.1.
 
 Any questions or comments can be sent to support@btcgear.com.
 
 To receive information about future updates, send an email to opencart_bitcoin@btcgear.com.
 
+# Dependencies
+
+This extension now requires previous installation of [vQmod](https://code.google.com/p/vqmod/) and will not run properly without it. vQmod enables making changes to core OpenCart functionality without actually editing the core OpenCart files.
+
 # Installation
 
-1. Upload all files maintaining OpenCart folder structure.
-2. Install the payment module in the admin console (Extensions > Payments > Bitcoin > Install).
-3. Edit the payment module settings (Extensions > Payments > Bitcoin > Edit).
-4. Run at least one test order through checkout up until payment (no payment required).  The first order initializes the Bitcoin currency and will return 0 BTC for the order total.
+1. Install vQmod.
+2. Upload all files maintaining OpenCart folder structure.
+3. Install the payment module in the admin console (Extensions > Payments > Bitcoin > Install).
+4. Edit the payment module settings (Extensions > Payments > Bitcoin > Edit).
+5. Click the link at the top of the payment module settings to initialize Bitcoin-related columns in your OpenCart database.
+6. Run at least one test order through checkout up until payment (no payment required).  The first order initializes the Bitcoin currency and will return 0 BTC for the order total.
 
 ## Explanation of Settings
 
@@ -30,9 +36,15 @@ To receive information about future updates, send an email to opencart_bitcoin@b
 * *Bitcoin RPC Port*: This is the port number in the "rpcport" line of your bitcoin.conf file.  The default port is 8332.
 * *The prefix for the address labels*: The addresses will be assigned to accounts named with the format [prefix]_[order_id].
 * *Show BTC as a store currency*: If you select yes, your customers will be able to view prices in BTC.
+* *Time to complete order*: The number of seconds a customer has to send bitcoins to complete the order.
 * *Status of a new order*: Choose a status for an order that has received payment with 0 confirmations.
 * *Status*: Enable the Bitcoin payment module here.
 * *Sort Order*: Where you want this module to show up in relation to the other payment modules on the checkout page.
+
+### New in version 1.3.5
+
+* Added a checkout timer.
+* Made a number of important bugfixes.
 
 ### New in version 1.3.4
 
