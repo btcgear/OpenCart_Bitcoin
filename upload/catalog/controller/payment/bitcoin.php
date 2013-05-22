@@ -75,6 +75,7 @@ class ControllerPaymentBitcoin extends Controller {
         $order = $this->model_checkout_order->getOrder($order_id);
 		$current_default_currency = $this->config->get('config_currency');		
 		$bitcoin_total = $order['bitcoin_total'];
+		$bitcoin_address = $order['bitcoin_address'];
 		require_once('jsonRPCClient.php');
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
 	
@@ -85,7 +86,7 @@ class ControllerPaymentBitcoin extends Controller {
 		}
 
 		try {
-			$received_amount = $bitcoin->getreceivedbyaccount($this->config->get('bitcoin_prefix').'_'.$order_id,0);
+			$received_amount = $bitcoin->getbalance($bitcoin_address,0);
 			if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
 				$order = $this->model_checkout_order->getOrder($order_id);
 				$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
