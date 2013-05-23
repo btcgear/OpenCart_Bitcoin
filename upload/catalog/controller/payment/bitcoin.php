@@ -23,6 +23,7 @@ class ControllerPaymentBitcoin extends Controller {
 		$this->data['error_confirm'] = $this->language->get('error_confirm');
 		$this->data['error_incomplete_pay'] = $this->language->get('error_incomplete_pay');
 		$this->data['bitcoin_countdown_timer'] = $this->config->get('bitcoin_countdown_timer');
+		$bitcoin_btc_decimal = $this->config->get('bitcoin_btc_decimal');
 				
 		$this->checkUpdate();
 	
@@ -32,8 +33,8 @@ class ControllerPaymentBitcoin extends Controller {
 
 		$current_default_currency = $this->config->get('config_currency');
 		
-		$this->data['bitcoin_total'] = round($this->currency->convert($order['total'], $current_default_currency, "BTC"),4);
-		
+		$this->data['bitcoin_total'] = sprintf("%.".$bitcoin_btc_decimal."f", round($this->currency->convert($order['total'], $current_default_currency, "BTC"),$bitcoin_btc_decimal));
+				
 		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET bitcoin_total = '" . $this->data['bitcoin_total'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
 
 		
@@ -73,7 +74,8 @@ class ControllerPaymentBitcoin extends Controller {
         $this->load->model('checkout/order');
 		$order_id = $this->session->data['order_id'];
         $order = $this->model_checkout_order->getOrder($order_id);
-		$current_default_currency = $this->config->get('config_currency');		
+		$current_default_currency = $this->config->get('config_currency');	
+		$bitcoin_btc_decimal = $this->config->get('bitcoin_btc_decimal');	
 		$bitcoin_total = $order['bitcoin_total'];
 		$bitcoin_address = $order['bitcoin_address'];
 		require_once('jsonRPCClient.php');
@@ -86,8 +88,8 @@ class ControllerPaymentBitcoin extends Controller {
 		}
 
 		try {
-			$received_amount = $bitcoin->getbalance($bitcoin_address,0);
-			if(round((float)$received_amount,4) >= round((float)$bitcoin_total,4)) {
+			$received_amount = $bitcoin->getreceivedbyaddress($bitcoin_address,0);
+			if(round((float)$received_amount,$bitcoin_btc_decimal) >= round((float)$bitcoin_total,$bitcoin_btc_decimal)) {
 				$order = $this->model_checkout_order->getOrder($order_id);
 				$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
 				echo "1";
@@ -108,7 +110,7 @@ class ControllerPaymentBitcoin extends Controller {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code = 'BTC'");
 						
 			if(!$query->row) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "currency (title, code, symbol_right, decimal_place, status) VALUES ('Bitcoin', 'BTC', ' BTC', '4', ".$this->config->get('bitcoin_show_btc').")");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "currency (title, code, symbol_right, decimal_place, status) VALUES ('Bitcoin', 'BTC', ' BTC', ".$this->config->get('bitcoin_btc_decimal').", ".$this->config->get('bitcoin_show_btc').")");
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "currency WHERE code = 'BTC'");
 			}
 			

@@ -61,6 +61,13 @@ class ControllerPaymentBitcoin extends Controller {
 		$this->data['text_disabled'] 		= $this->language->get('text_disabled');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
+		$this->data['text_8'] = $this->language->get('text_8');
+		$this->data['text_7'] = $this->language->get('text_7');
+		$this->data['text_6'] = $this->language->get('text_6');
+		$this->data['text_5'] = $this->language->get('text_5');
+		$this->data['text_4'] = $this->language->get('text_4');
+		$this->data['text_3'] = $this->language->get('text_3');
+		$this->data['text_2'] = $this->language->get('text_2');
 				
         $this->data['entry_username']        = $this->language->get('entry_username');
         $this->data['entry_address']        = $this->language->get('entry_address');
@@ -69,6 +76,7 @@ class ControllerPaymentBitcoin extends Controller {
         $this->data['entry_prefix']       = $this->language->get('entry_prefix');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_show_btc']         = $this->language->get('entry_show_btc');
+        $this->data['entry_btc_decimal']         = $this->language->get('entry_btc_decimal');
         $this->data['entry_countdown_timer']         = $this->language->get('entry_countdown_timer');
         $this->data['entry_status']         = $this->language->get('entry_status');
 		$this->data['entry_sort_order'] 	= $this->language->get('entry_sort_order');
@@ -166,6 +174,11 @@ class ControllerPaymentBitcoin extends Controller {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->request->post[$this->payment_module_name.'_show_btc'];
 		} else {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->config->get($this->payment_module_name.'_show_btc');
+		}
+        if (isset($this->request->post[$this->payment_module_name.'_btc_decimal'])) {
+			$this->data[$this->payment_module_name.'_btc_decimal'] = $this->request->post[$this->payment_module_name.'_btc_decimal'];
+		} else {
+			$this->data[$this->payment_module_name.'_btc_decimal'] = $this->config->get($this->payment_module_name.'_btc_decimal');
 		}
         if (isset($this->request->post[$this->payment_module_name.'_countdown_timer'])) {
 			$this->data[$this->payment_module_name.'_countdown_timer'] = $this->request->post[$this->payment_module_name.'_countdown_timer'];

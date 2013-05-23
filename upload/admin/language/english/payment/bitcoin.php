@@ -10,6 +10,13 @@ $_['text_success']       = 'Success: You have modified the Bitcoin payment modul
 $_['text_bitcoin'] = '<img src="view/image/payment/bitcoin.jpg" alt="Bitcoin" title="Bitcoin" />';
 $_['text_yes']       = 'Yes';
 $_['text_no']       = 'No';
+$_['text_8']       = '8';
+$_['text_7']       = '7';
+$_['text_6']       = '6';
+$_['text_5']       = '5';
+$_['text_4']       = '4';
+$_['text_3']       = '3';
+$_['text_2']       = '2';
 
 // Entry
 $_['entry_username']      = 'Bitcoin RPC Username:';
@@ -19,6 +26,7 @@ $_['entry_port']     = 'Bitcoin RPC Port:<br /><span class="help">The default is
 $_['entry_prefix']     = 'The prefix for the address labels:<br /><span class="help">The account will be in the form [prefix]_[order_id]</span>';
 $_['entry_order_status'] = 'Status of a new order:';
 $_['entry_show_btc']       = 'Show BTC as a store currency:';
+$_['entry_btc_decimal']       = 'Calculate BTC amount to this many decimal places:';
 $_['entry_countdown_timer']       = 'Time to complete order:<br /><span class="help">In seconds</span>';
 $_['entry_status']       = 'Status:';
 $_['entry_sort_order']   = 'Sort Order:';

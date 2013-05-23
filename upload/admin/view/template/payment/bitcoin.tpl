@@ -72,6 +72,68 @@ Copyright (c) 2013 John Atkinson (jga)
               <?php } ?>
             </select></td>
         </tr>
+		<tr>
+          <td><?php echo $entry_btc_decimal; ?></td>
+          <td><select name="bitcoin_btc_decimal"> 
+              <?php if ($bitcoin_btc_decimal == 8) { ?>
+              <option value="8" selected="selected"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } else if ($bitcoin_btc_decimal == 7) { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7" selected="selected"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } else if ($bitcoin_btc_decimal == 6) { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6" selected="selected"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } else if ($bitcoin_btc_decimal == 5) { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5" selected="selected"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } else if ($bitcoin_btc_decimal == 3) { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3" selected="selected"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } else if ($bitcoin_btc_decimal == 2) { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2" selected="selected"><?php echo $text_5; ?></option>
+              <?php } else { ?>
+              <option value="8"><?php echo $text_8; ?></option>
+              <option value="7"><?php echo $text_7; ?></option>
+              <option value="6"><?php echo $text_6; ?></option>
+              <option value="5"><?php echo $text_5; ?></option>
+              <option value="4" selected="selected"><?php echo $text_4; ?></option>
+              <option value="3"><?php echo $text_3; ?></option>
+              <option value="2"><?php echo $text_2; ?></option>
+              <?php } ?>
+            </select></td>
+        </tr>
         <tr>
           <td><span class="required">*</span> <?php echo $entry_countdown_timer; ?></td>
           <td><input type="text" name="bitcoin_countdown_timer" value="<?php echo $bitcoin_countdown_timer; ?>" style="width:300px;" />
