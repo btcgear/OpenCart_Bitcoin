@@ -61,6 +61,18 @@ Copyright (c) 2013 John Atkinson (jga)
             <?php } ?></td>
         </tr>
 		<tr>
+          <td><?php echo $entry_blockchain; ?></td>
+          <td><select name="bitcoin_blockchain"> 
+              <?php if ($bitcoin_blockchain) { ?>
+              <option value="1" selected="selected"><?php echo $text_yes; ?></option>
+              <option value="0"><?php echo $text_no; ?></option>
+              <?php } else { ?>
+              <option value="1"><?php echo $text_yes; ?></option>
+              <option value="0" selected="selected"><?php echo $text_no; ?></option>
+              <?php } ?>
+            </select></td>
+        </tr>
+		<tr>
           <td><?php echo $entry_show_btc; ?></td>
           <td><select name="bitcoin_show_btc"> 
               <?php if ($bitcoin_show_btc) { ?>

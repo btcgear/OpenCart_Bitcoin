@@ -26,6 +26,7 @@ $_['entry_port']     = 'Bitcoin RPC Port:<br /><span class="help">The default is
 $_['entry_prefix']     = 'The prefix for the address labels:<br /><span class="help">The account will be in the form [prefix]_[order_id]</span>';
 $_['entry_order_status'] = 'Status of a new order:';
 $_['entry_show_btc']       = 'Show BTC as a store currency:';
+$_['entry_blockchain']       = 'Is this a blockchain.info JSON-RPC server?:';
 $_['entry_btc_decimal']       = 'Calculate BTC amount to this many decimal places:';
 $_['entry_countdown_timer']       = 'Time to complete order:<br /><span class="help">In seconds</span>';
 $_['entry_status']       = 'Status:';

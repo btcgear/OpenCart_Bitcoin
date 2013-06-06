@@ -78,17 +78,31 @@ class ControllerPaymentBitcoin extends Controller {
 		$bitcoin_btc_decimal = $this->config->get('bitcoin_btc_decimal');	
 		$bitcoin_total = $order['bitcoin_total'];
 		$bitcoin_address = $order['bitcoin_address'];
-		require_once('jsonRPCClient.php');
-		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
-	
-		try {
-			$bitcoin_info = $bitcoin->getinfo();
-		} catch (Exception $e) {
-			$this->data['error'] = true;
+		if(!$this->config->get('bitcoin_blockchain')) {
+			require_once('jsonRPCClient.php');
+			$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
+		
+			try {
+				$bitcoin_info = $bitcoin->getinfo();
+			} catch (Exception $e) {
+				$this->data['error'] = true;
+			}
 		}
 
 		try {
-			$received_amount = $bitcoin->getreceivedbyaddress($bitcoin_address,0);
+			if(!$this->config->get('bitcoin_blockchain')) {
+				$received_amount = $bitcoin->getreceivedbyaddress($bitcoin_address,0);
+			}
+			else {
+				static $ch = null;
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; Blockchain.info PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
+				curl_setopt($ch, CURLOPT_URL, 'http://blockchain.info/q/getreceivedbyaddress/'.$bitcoin_address.'?confirmations=0');
+				$res = curl_exec($ch);
+				if ($res === false) throw new Exception('Could not get reply: '.curl_error($ch));
+				$received_amount = $res / 100000000;
+			}
 			if(round((float)$received_amount,$bitcoin_btc_decimal) >= round((float)$bitcoin_total,$bitcoin_btc_decimal)) {
 				$order = $this->model_checkout_order->getOrder($order_id);
 				$this->model_checkout_order->confirm($order_id, $this->config->get('bitcoin_order_status_id'));
@@ -101,7 +115,6 @@ class ControllerPaymentBitcoin extends Controller {
 			$this->data['error'] = true;
 			echo "0";
 		}
-
 	}
 	
 	public function checkUpdate() {

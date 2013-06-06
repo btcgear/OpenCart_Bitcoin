@@ -76,6 +76,7 @@ class ControllerPaymentBitcoin extends Controller {
         $this->data['entry_prefix']       = $this->language->get('entry_prefix');
         $this->data['entry_order_status'] = $this->language->get('entry_order_status');
         $this->data['entry_show_btc']         = $this->language->get('entry_show_btc');
+        $this->data['entry_blockchain']         = $this->language->get('entry_blockchain');
         $this->data['entry_btc_decimal']         = $this->language->get('entry_btc_decimal');
         $this->data['entry_countdown_timer']         = $this->language->get('entry_countdown_timer');
         $this->data['entry_status']         = $this->language->get('entry_status');
@@ -174,6 +175,11 @@ class ControllerPaymentBitcoin extends Controller {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->request->post[$this->payment_module_name.'_show_btc'];
 		} else {
 			$this->data[$this->payment_module_name.'_show_btc'] = $this->config->get($this->payment_module_name.'_show_btc');
+		}
+        if (isset($this->request->post[$this->payment_module_name.'_blockchain'])) {
+			$this->data[$this->payment_module_name.'_blockchain'] = $this->request->post[$this->payment_module_name.'_blockchain'];
+		} else {
+			$this->data[$this->payment_module_name.'_blockchain'] = $this->config->get($this->payment_module_name.'_blockchain');
 		}
         if (isset($this->request->post[$this->payment_module_name.'_btc_decimal'])) {
 			$this->data[$this->payment_module_name.'_btc_decimal'] = $this->request->post[$this->payment_module_name.'_btc_decimal'];
