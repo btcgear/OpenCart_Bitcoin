@@ -139,6 +139,26 @@ class ControllerPaymentBitcoin extends Controller {
             'href'      => $this->url->link('payment/bitcoin', 'token=' . $this->session->data['token'], 'SSL'),
             'separator' => ' :: '
         );
+		
+		$result = $this->db->query("SHOW COLUMNS FROM ". DB_PREFIX ."order;");
+		$rows = $result->rows;
+		$max = $result->num_rows;
+		$bitcoin_total_in_db = 0;
+		$bitcoin_address_in_db = 0;
+		for($i = 0;$i < $max;$i++) {
+			if($rows[$i]["Field"] == "bitcoin_total") {
+				$bitcoin_total_in_db = 1;
+			}
+			if($rows[$i]["Field"] == "bitcoin_address") {
+				$bitcoin_address_in_db = 1;
+			}
+		}
+		if(!$bitcoin_total_in_db) {
+			$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_total DOUBLE AFTER currency_value;");
+		}
+		if(!$bitcoin_address_in_db) {
+			$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_address VARCHAR(34) AFTER bitcoin_total;");
+		}
 
 		$this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/'.$this->payment_module_name.'&token=' . $this->session->data['token'];
 		$this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/payment&token=' . $this->session->data['token'];	
@@ -215,10 +235,4 @@ class ControllerPaymentBitcoin extends Controller {
 		$this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
 	}
 	
-	public function update_db() {
-
-		$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_total DOUBLE AFTER currency_value;");
-		$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_address VARCHAR(34) AFTER bitcoin_total;");
-
-	}
 }
