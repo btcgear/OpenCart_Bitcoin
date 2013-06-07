@@ -34,7 +34,9 @@ This extension now requires previous installation of [vQmod](https://code.google
 * *Bitcoin RPC Password*: This is the password in the "rpcpassword" line of your bitcoin.conf file.
 * *Bitcoin RPC Port*: This is the port number in the "rpcport" line of your bitcoin.conf file.  The default port is 8332.
 * *The prefix for the address labels*: The addresses will be assigned to accounts named with the format [prefix]_[order_id].
+* *Is this a blockchain.info JSON-RPC server?*: Choose yes if connecting to blockchain.info JSON-RPC API.
 * *Show BTC as a store currency*: If you select yes, your customers will be able to view prices in BTC.
+* *Calculate BTC amount to this many decimal places*: Self explanatory. Choose the precision of the exchange rate calculation.
 * *Time to complete order*: The number of seconds a customer has to send bitcoins to complete the order.
 * *Status of a new order*: Choose a status for an order that has received payment with 0 confirmations.
 * *Status*: Enable the Bitcoin payment module here.
@@ -42,7 +44,7 @@ This extension now requires previous installation of [vQmod](https://code.google
 
 ### New in version 1.4.0
 
-* Now compatible with the blockchain.info JSON-RPC API
+* Now compatible with the Blockchain.info JSON-RPC API
 
 ### New in version 1.3.5
 
