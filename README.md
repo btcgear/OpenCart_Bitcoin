@@ -25,8 +25,7 @@ This extension now requires previous installation of [vQmod](https://code.google
 2. Upload all files maintaining OpenCart folder structure.
 3. Install the payment module in the admin console (Extensions > Payments > Bitcoin > Install).
 4. Edit the payment module settings (Extensions > Payments > Bitcoin > Edit).
-5. Click the link at the top of the payment module settings to initialize Bitcoin-related columns in your OpenCart database.
-6. Run at least one test order through checkout up until payment (no payment required).  The first order initializes the Bitcoin currency and will return 0 BTC for the order total.
+5. Run at least one test order through checkout up until payment (no payment required).  The first order initializes the Bitcoin currency and will return 0 BTC for the order total.
 
 ## Explanation of Settings
 
@@ -40,6 +39,10 @@ This extension now requires previous installation of [vQmod](https://code.google
 * *Status of a new order*: Choose a status for an order that has received payment with 0 confirmations.
 * *Status*: Enable the Bitcoin payment module here.
 * *Sort Order*: Where you want this module to show up in relation to the other payment modules on the checkout page.
+
+### New in version 1.4.0
+
+* Now compatible with the blockchain.info JSON-RPC API
 
 ### New in version 1.3.5
 
