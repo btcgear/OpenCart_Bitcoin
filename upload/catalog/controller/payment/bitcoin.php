@@ -32,12 +32,9 @@ class ControllerPaymentBitcoin extends Controller {
 		$order = $this->model_checkout_order->getOrder($order_id);
 
 		$current_default_currency = $this->config->get('config_currency');
-		
 		$this->data['bitcoin_total'] = sprintf("%.".$bitcoin_btc_decimal."f", round($this->currency->convert($order['total'], $current_default_currency, "BTC"),$bitcoin_btc_decimal));
-				
 		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET bitcoin_total = '" . $this->data['bitcoin_total'] . "', date_modified = NOW() WHERE order_id = '" . (int)$order_id . "'");
 
-		
 		require_once('jsonRPCClient.php');
 		
 		$bitcoin = new jsonRPCClient('http://'.$this->config->get('bitcoin_rpc_username').':'.$this->config->get('bitcoin_rpc_password').'@'.$this->config->get('bitcoin_rpc_address').':'.$this->config->get('bitcoin_rpc_port').'/');
@@ -178,6 +175,7 @@ class ControllerPaymentBitcoin extends Controller {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 		}
 		curl_setopt($ch, CURLOPT_URL, 'https://data.mtgox.com/api/'.$path);
 	 
