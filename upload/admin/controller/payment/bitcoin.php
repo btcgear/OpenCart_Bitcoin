@@ -154,10 +154,10 @@ class ControllerPaymentBitcoin extends Controller {
 			}
 		}
 		if(!$bitcoin_total_in_db) {
-			$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_total DOUBLE AFTER currency_value;");
+			$this->db->query("ALTER TABLE `". DB_PREFIX ."order` ADD bitcoin_total DOUBLE AFTER currency_value;");
 		}
 		if(!$bitcoin_address_in_db) {
-			$this->db->query("ALTER TABLE ". DB_PREFIX ."order ADD bitcoin_address VARCHAR(34) AFTER bitcoin_total;");
+			$this->db->query("ALTER TABLE `". DB_PREFIX ."order` ADD bitcoin_address VARCHAR(34) AFTER bitcoin_total;");
 		}
 
 		$this->data['action'] = HTTPS_SERVER . 'index.php?route=payment/'.$this->payment_module_name.'&token=' . $this->session->data['token'];
